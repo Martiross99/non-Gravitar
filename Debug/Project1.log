@@ -1,0 +1,22 @@
+﻿  planet.cpp
+c:\users\erika\progetto\nongravitar\project1\planet.cpp(13): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+c:\users\erika\progetto\nongravitar\project1\planet.cpp(21): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+c:\users\erika\progetto\nongravitar\project1\planet.cpp(43): warning C4390: ';': trovata istruzione controllata vuota. È ciò che si desidera?
+c:\users\erika\progetto\nongravitar\project1\planet.cpp(71): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\erika\progetto\nongravitar\project1\planet.cpp(80): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\erika\progetto\nongravitar\project1\planet.cpp(93): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\erika\progetto\nongravitar\project1\planet.cpp(113): warning C4244: 'argomento': conversione da 'double' a 'T'. Possibile perdita di dati.
+          with
+          [
+              T=float
+          ]
+c:\users\erika\progetto\nongravitar\project1\planet.cpp(114): warning C4244: 'argomento': conversione da 'double' a 'T'. Possibile perdita di dati.
+          with
+          [
+              T=float
+          ]
+c:\users\erika\progetto\nongravitar\project1\planet.cpp(120): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\erika\progetto\nongravitar\project1\planet.cpp(132): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\erika\progetto\nongravitar\project1\planet.cpp(158): warning C4018: '<': errata corrispondenza tra signed e unsigned
+c:\users\erika\progetto\nongravitar\project1\planet.cpp(164): warning C4018: '<': errata corrispondenza tra signed e unsigned
+  Project1.vcxproj -> C:\Users\Erika\progetto\NonGravitar\Debug\Project1.exe
