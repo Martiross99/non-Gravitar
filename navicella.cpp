@@ -4,6 +4,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <math.h>
 
 #include "navicella.h"
 #include "game.h"
@@ -187,7 +188,7 @@ void navicella::decreaseLifePoints() {
 }
 
 bool navicella::decreaseFuel() {
-	return(carburante.decrease()); //ritorna false se il carburante è finito
+	return(carburante.decrease()); //ritorna false se il carburante ï¿½ finito
 }
 
 void navicella::increaseFuel(float x) {
@@ -214,7 +215,7 @@ void navicella::draw(sf::RenderWindow & window) {
 	carburante.draw(window, sf::Vector2f(570, 280));
 
 
-	if (raggioT) {                 //se il raggio traente è attivo lo disegna
+	if (raggioT) {                 //se il raggio traente ï¿½ attivo lo disegna
 		window.draw(line1);
 		window.draw(line2);
 	}

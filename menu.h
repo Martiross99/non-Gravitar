@@ -24,6 +24,8 @@ private:
 	sf::RenderWindow gameWindow;
 	sf::View gameView;
 
+	std::vector<sf::CircleShape> stelleVect;
+
 	bool play;
 	bool gameOver;
 	bool closeWindow;

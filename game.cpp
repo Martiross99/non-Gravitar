@@ -31,7 +31,6 @@ game::game(sf::RenderWindow& gameWindow)
 	newSolarSystem(nPianeti);
 	planetsLeft = pianetiVect.size();
 
-
 	for (int i = 0; i < NSTELLE; i++) {
 		int x = -1, y = -1;
 		bool isOutside;
@@ -57,7 +56,7 @@ game::~game()
 {
 }
 
-int game::run(sf::RenderWindow& gameWindow) //però come passiamo il punteggio finale?
+int game::run(sf::RenderWindow& gameWindow) //perï¿½ come passiamo il punteggio finale?
 {
 	while (alive && !close)	//esce se hai finito le vite o se hai chiuso la finestra
 	{
@@ -74,8 +73,8 @@ int game::run(sf::RenderWindow& gameWindow) //però come passiamo il punteggio fi
     else return(points);
 }
 
-void game::paused(sf::RenderWindow& gameWindow) { //viene mostrato "pause", non può più giocare
-  //e viene data la possibilità di riprendere a giocare
+void game::paused(sf::RenderWindow& gameWindow) { //viene mostrato "pause", non puï¿½ piï¿½ giocare
+  //e viene data la possibilitï¿½ di riprendere a giocare
 
 	gameWindow.setView(view);
 

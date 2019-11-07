@@ -7,9 +7,30 @@
 
 #include "menu.h"
 
+#define NSTELLE 1000
+
 menu::menu()
 	: gameWindow({ 1280, 720 }, "nongravitar"), titolo("NonGravitar"), avvio("PRESS ENTER TO PLAY\n\nYOU CAN PRESS P ANYTIME TO PAUSE")
 {
+
+	for (int i = 0; i < NSTELLE; i++) {
+		int x = -1, y = -1;
+		bool isOutside;
+		do {
+			isOutside = true;
+			x = rand() % 1280;
+			y = rand() % 720;
+
+		} while (!isOutside);
+
+		sf::CircleShape stella;
+		stelleVect.push_back(stella);
+		stelleVect[i].setPosition(x, y);
+		stelleVect[i].setRadius(0.25);
+		stelleVect[i].setFillColor(sf::Color::Black);
+		stelleVect[i].setOutlineColor(sf::Color(89, 89, 89));
+		stelleVect[i].setOutlineThickness(1);
+	}
 
 	play = false;
 	gameOver = false;
@@ -90,24 +111,28 @@ void menu::initialize()
 {
 	game game(gameWindow);
 	gameReturn = game.run(gameWindow);
-	if (gameReturn == -1)	//se è un valore positivo vuol dire che il while di game.cpp si
-		//è interrotto perché l'utente ha chiuso la finestra, in caso contrario è perché è morto
+	if (gameReturn == -1)	//se ï¿½ un valore positivo vuol dire che il while di game.cpp si
+		//ï¿½ interrotto perchï¿½ l'utente ha chiuso la finestra, in caso contrario ï¿½ perchï¿½ ï¿½ morto
 		closeWindow = true;
-	else {    //se il return non è -1 allora vuol dire che il return contiene i punti e il
-  //gioco si è concluso perché l'utente ha finito le vite
+	else {    //se il return non ï¿½ -1 allora vuol dire che il return contiene i punti e il
+  //gioco si ï¿½ concluso perchï¿½ l'utente ha finito le vite
 		gameOver = true;
 	}
 
-	play = false; //in ogni caso il gioco è finito
+	play = false; //in ogni caso il gioco ï¿½ finito
 }
 
 
 void menu::display() {
 
-	if (!play && !gameOver && !closeWindow) { //non sta giocando e non ha perso: viene mostrato il menù principale
+	if (!play && !gameOver && !closeWindow) { //non sta giocando e non ha perso: viene mostrato il menï¿½ principale
 
 		gameWindow.setView(gameView);
 
+
+		for (int i = 0; i < stelleVect.size(); i++) {
+			gameWindow.draw(stelleVect[i]);
+		}
 		titolo.setTitle();
 		titolo.draw(gameWindow, sf::Vector2f(173, 80));
 		avvio.draw(gameWindow, sf::Vector2f(170, 10));
@@ -115,8 +140,8 @@ void menu::display() {
 		gameWindow.display();
 
 	}
-	else if (!play && gameOver) {   //non sta giocando perché ha perso: viene mostrato "game over" e il
-  //punteggio ottenuto nella partita -> dà la possibilità di iniziare una nuova partita
+	else if (!play && gameOver) {   //non sta giocando perchï¿½ ha perso: viene mostrato "game over" e il
+  //punteggio ottenuto nella partita -> dï¿½ la possibilitï¿½ di iniziare una nuova partita
 
 		gameWindow.setView(gameView);
 
