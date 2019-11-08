@@ -5,7 +5,6 @@
 #include  "textBox.h"
 
 textBox::textBox(std::string txt)  {
-
 	testo.setString(txt);
 
 	font.loadFromFile("LucidaSansRegular.ttf");
@@ -26,6 +25,8 @@ textBox::textBox(std::string txt)  {
 	testo.setStyle(sf::Text::Style::Bold);
 
 }
+
+
 
 textBox::~textBox()
 {

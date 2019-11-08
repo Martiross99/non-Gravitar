@@ -26,7 +26,7 @@ game::game(sf::RenderWindow& gameWindow)
 	close = false;
 	pausa = false;
 
-	nPianeti = rand() % 3 + 5;  
+	nPianeti = rand() % 3 + 5;
 
 	newSolarSystem(nPianeti);
 	planetsLeft = pianetiVect.size();
@@ -95,7 +95,7 @@ bool game::processEvents(sf::RenderWindow & gameWindow)
 		switch (event.type) {
 
 		case sf::Event::KeyPressed:
-			if (event.key.code == sf::Keyboard::C)
+			if (event.key.code == sf::Keyboard::C && planetsLeft == 0)
 				newSolarSystem(nPianeti);
 			else handlePlayerInput(event.key.code, true);
 
@@ -214,11 +214,7 @@ bool game::update(sf::RenderWindow & gameWindow)
 	   }
 	}
 
-	if (planetsLeft == 0 && alive) {
-		gameWindow.setView(view);
-		Tcomplimenti.draw(gameWindow, sf::Vector2f(173, 80));
-		gameWindow.display();
-	}
+
 
 	return(alive);
 }
@@ -234,6 +230,11 @@ void game::render(sf::RenderWindow & gameWindow)
 		}
 		for (int i = 0; i < pianetiVect.size(); i++) {
 			pianetiVect[i].draw(gameWindow);
+		}
+
+		if (planetsLeft == 0 && alive) {
+			gameWindow.setView(view);
+			Tcomplimenti.draw(gameWindow, sf::Vector2f(173, 80));
 		}
 	}
 	else pianetiVect[isInside].drawGround(gameWindow);

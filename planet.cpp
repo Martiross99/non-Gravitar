@@ -92,7 +92,7 @@ void planet::update(navicella& spaceShip, int& points) {
 	if (!bulletVect.empty()) {                             //controlla le collisioni dei proiettili sparati dalla navicella con il terreno
 		for (int i = 0; i < bulletVect.size(); i++) {
 			if(bulletVect.size() > 2)
-		std::cout << bulletVect[0].getDirection().x << std::endl; // "  " << bulletVect[0].getPosition().y << " " << bulletVect[0].getDirection().x << "  " << bulletVect[0].getDirection().y << std::endl;
+		//std::cout << bulletVect[0].getDirection().x << std::endl; // "  " << bulletVect[0].getPosition().y << " " << bulletVect[0].getDirection().x << "  " << bulletVect[0].getDirection().y << std::endl;
 		   if (ground.collision(sf::Vector2f(bulletVect[i].getPosition().x + bulletVect[i].getDirection().x * 4, bulletVect[i].getPosition().y + bulletVect[i].getDirection().y * 4))< 5)  spaceShip.eraseBullet();
 
 		}
@@ -106,7 +106,7 @@ void planet::update(navicella& spaceShip, int& points) {
 		spaceShip.setPosition(sf::Vector2f(spaceShip.getPosition().x, spaceShip.getPosition().y - 200));
 	}
 
-	if (h > 250 || (spaceShip.getRotation() < 10) || (spaceShip.getRotation() > 170)) spaceShip.disactivate();   //sopra a una certa altezza non è possibile attivare il raggio traente
+	if (h > 250 || (spaceShip.getRotation() < 10) || (spaceShip.getRotation() > 170)) spaceShip.disactivate();   //sopra a una certa altezza non ï¿½ possibile attivare il raggio traente
 	else {
 		float posRl = 40; float posRr = 40;        //setta il raggio traente della lunghezza  opportuna
 
