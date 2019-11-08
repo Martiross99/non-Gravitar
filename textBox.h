@@ -12,6 +12,7 @@ class textBox {
 public:
 
 	textBox(std::string txt);
+	textBox();
 	~textBox();
 
 	void updateText(std::string txt);
@@ -27,10 +28,10 @@ public:
 	void setFont();
 	void rotate(double rotation);
 
-	void getFont();
+	std::string getText();
 
 private:
 
 	sf::Text testo;
-    sf::Font font;
+	sf::Font font;
 };

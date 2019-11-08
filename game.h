@@ -22,7 +22,7 @@ private:
 
 	void handlePlayerInput(sf::Keyboard::Key, bool);
 	void paused(sf::RenderWindow& gameWindow);
-	void newSolarSystem(int nPianeti);
+	void newSolarSystem();
 
 private:
 	sf::View view;

@@ -28,7 +28,8 @@ game::game(sf::RenderWindow& gameWindow)
 
 	nPianeti = rand() % 3 + 5;  
 
-	newSolarSystem(nPianeti);
+	newSolarSystem();
+
 	planetsLeft = pianetiVect.size();
 
 	for (int i = 0; i < NSTELLE; i++) {
@@ -95,9 +96,7 @@ bool game::processEvents(sf::RenderWindow & gameWindow)
 		switch (event.type) {
 
 		case sf::Event::KeyPressed:
-			if (event.key.code == sf::Keyboard::C)
-				newSolarSystem(nPianeti);
-			else handlePlayerInput(event.key.code, true);
+			handlePlayerInput(event.key.code, true);
 
 			return false;
 
@@ -113,18 +112,6 @@ bool game::processEvents(sf::RenderWindow & gameWindow)
 			return true;
 
 			break;
-			/*case sf::Event::KeyPressed:
-				spaceShip.handleEvents(event.key.code, true);
-				return false;
-				break;
-			case sf::Event::KeyReleased:
-				spaceShip.handleEvents(event.key.code, false);
-				return false;
-				break;
-			case sf::Event::Closed:
-				return true;
-				break;
-			}*/
 		}
 	}
 
@@ -132,6 +119,8 @@ bool game::processEvents(sf::RenderWindow & gameWindow)
 
 void game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) //gestisce la pausa e poi manda i movimenti al metodo della navicella
 {
+	if (key == sf::Keyboard::C && planetsLeft == 0)
+		newSolarSystem();
 	if (key == sf::Keyboard::P)
 		pausa = true;
 	else if (key == sf::Keyboard::Return)
@@ -157,6 +146,7 @@ bool game::update(sf::RenderWindow & gameWindow)
 		
 
 		if (isInside == -1) {            //fuori dai pianeti
+
 			spaceShip.disactivate();      //raggio traente disattivato
 			for (int i = 0; i < pianetiVect.size(); i++) {
 				if ((spaceShip.getBounds()).intersects(pianetiVect[i].getBounds())) {
@@ -164,6 +154,12 @@ bool game::update(sf::RenderWindow & gameWindow)
 					spaceShip.setPosition(sf::Vector2f(640, 360));
 					spaceShip.getBullets().clear();
 				}
+			}
+
+			if (planetsLeft == 0 && alive) {
+				//gameWindow.setView(view);
+				Tcomplimenti.draw(gameWindow, sf::Vector2f(173, 80));
+				gameWindow.display();
 			}
 		}
 
@@ -209,16 +205,11 @@ bool game::update(sf::RenderWindow & gameWindow)
 
 	   if (moving != 0) {      //controls fuel drecreasement
 		   if (!spaceShip.decreaseFuel()) { //controlla che la funzione decrease abbia portato a conclusione
-			   alive = false;            // la sottrazione del fuel e in caso contrario chiude la partita
+			   spaceShip.setLives(-1);          // la sottrazione del fuel e in caso contrario chiude la partita
 		   }
 	   }
 	}
 
-	if (planetsLeft == 0 && alive) {
-		gameWindow.setView(view);
-		Tcomplimenti.draw(gameWindow, sf::Vector2f(173, 80));
-		gameWindow.display();
-	}
 
 	return(alive);
 }
@@ -245,7 +236,11 @@ void game::render(sf::RenderWindow & gameWindow)
 	gameWindow.display();
 }
 
-void game::newSolarSystem(int nPianeti) {
+void game::newSolarSystem() {
+
+	//nPianeti = rand() % 3 + 5;
+
+	nPianeti = 1;
 
 	for (int i = 0; i < nPianeti; i++) {
 		planet newPlanet(nPianeti, i);

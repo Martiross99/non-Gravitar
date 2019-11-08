@@ -37,6 +37,9 @@ int lifeScore::getLives() {
 	return livesLeft;
 }
 
+void lifeScore::setLives(int n) {
+	livesLeft = n;
+}
 
 
 //MODIFICA PER LA SCHERMATA GAME-OVER E INIZIO NUOVA PARTITA

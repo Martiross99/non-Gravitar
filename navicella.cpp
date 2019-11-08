@@ -13,7 +13,7 @@
 
 navicella::navicella() : carburante() {      //design spaceShip
 
-	Navicella.setPointCount(44);
+	/*Navicella.setPointCount(44);
 
 	Navicella.setPoint(0, sf::Vector2f(0, 20));
 	Navicella.setPoint(1, sf::Vector2f(5, 25));
@@ -62,13 +62,31 @@ navicella::navicella() : carburante() {      //design spaceShip
 	Navicella.setPoint(40, sf::Vector2f(30, 11));
 	Navicella.setPoint(41, sf::Vector2f(15, 10));
 	Navicella.setPoint(42, sf::Vector2f(10, 15));
-	Navicella.setPoint(43, sf::Vector2f(5, 15));
+	Navicella.setPoint(43, sf::Vector2f(5, 15));*/
+
+	double 
+	X[43] = {5, 7.5, 11.5, 16.5, 6.5, 22.5, 30, 16.5, 6.5, 22.5, 30, 38, 40, 44, 46, 48, 50, 52, 54, 55, 55.5, 56, 55.5, 55, 54, 52, 50, 
+		48, 46, 44, 40, 38, 30, 21.5, 6.5, 16.5, 30, 21.5, 6.5, 16.5, 11.5, 7.5, 5 }, 
+	Y[43] = {20, 25, 25, 30, 35, 38.5, 30, 30, 35, 38.5, 30, 27, 27, 26, 25, 24, 23, 22, 21.5, 21, 20.5, 20, 19.5, 19, 18.5,18, 17, 16, 15, 14, 
+		13, 13, 10, 2.5, 5, 10, 10, 2.5, 5, 10, 15, 15, 20	};
+
+	Navicella.setPointCount(43);
+
+	for (int i = 0; i < 43; i++) {
+
+		cout << i << ": " << X[i] << " " << Y[i] << "\n";
+		Navicella.setPoint(i, sf::Vector2f(X[i], Y[i]));
+
+
+	}
+
 
 
 	Navicella.setFillColor(sf::Color::Black);
 	Navicella.setOutlineThickness(2);
-	Navicella.setOutlineColor(sf::Color(186, 72, 11));
+	Navicella.setOutlineColor(sf::Color::White);
 	Navicella.setPosition(sf::Vector2f(640, 50));
+
 	float originX = (Navicella.getPoint(0).x + Navicella.getPoint(23).x) / 2;
 	float originY = (Navicella.getPoint(11).y - Navicella.getPoint(35).y) / 2;
 	Navicella.setOrigin(sf::Vector2f(originX, originY));
@@ -170,6 +188,10 @@ sf::FloatRect navicella::getBounds() {
 
 int navicella::getLives() {
 	return puntiVita.getLives();
+}
+
+void navicella::setLives(int n) {
+	puntiVita.setLives(n);
 }
 
 void navicella::decreaseLives() {

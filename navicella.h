@@ -32,6 +32,7 @@ public:
 	sf::FloatRect getBounds(); 
 
 	int getLives(); 
+	void setLives(int n);
 
 	void decreaseLives();          //decrementa le vite della navicella
 	void decreaseLifePoints();     //decrementa la barra della vita 

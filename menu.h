@@ -20,6 +20,8 @@ public:
 
 	const sf::RenderWindow& getWindow();
 
+	void loadTexts();
+
 private:
 	sf::RenderWindow gameWindow;
 	sf::View gameView;
@@ -27,16 +29,11 @@ private:
 	std::vector<sf::CircleShape> stelleVect;
 
 	bool play;
+	bool showInst;
 	bool gameOver;
 	bool closeWindow;
 	int gameReturn;
 
-	textBox titolo;
-	textBox avvio;
-
-	textBox GameOver = textBox("GAME OVER:");
-	textBox newGame = textBox("PRESS ENTER TO PLAY A NEW GAME");
-	textBox Points = textBox("SCORE ");
-	//int finalPoints;
+	textBox allTB[13];
 
 };

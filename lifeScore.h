@@ -12,6 +12,7 @@ public:
 	~lifeScore();
 
 	int getLives();  //ritorna il numero di vite ancora disponibili
+	void setLives(int n);
 
 	void decreaseLives();  //decremta di uno il numero delle vite
 

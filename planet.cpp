@@ -92,7 +92,7 @@ void planet::update(navicella& spaceShip, int& points) {
 	if (!bulletVect.empty()) {                             //controlla le collisioni dei proiettili sparati dalla navicella con il terreno
 		for (int i = 0; i < bulletVect.size(); i++) {
 			if(bulletVect.size() > 2)
-		std::cout << bulletVect[0].getDirection().x << std::endl; // "  " << bulletVect[0].getPosition().y << " " << bulletVect[0].getDirection().x << "  " << bulletVect[0].getDirection().y << std::endl;
+		/*std::cout << */bulletVect[0].getDirection().x /*<< std::endl*/; // "  " << bulletVect[0].getPosition().y << " " << bulletVect[0].getDirection().x << "  " << bulletVect[0].getDirection().y << std::endl;
 		   if (ground.collision(sf::Vector2f(bulletVect[i].getPosition().x + bulletVect[i].getDirection().x * 4, bulletVect[i].getPosition().y + bulletVect[i].getDirection().y * 4))< 5)  spaceShip.eraseBullet();
 
 		}

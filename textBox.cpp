@@ -4,7 +4,7 @@
 
 #include  "textBox.h"
 
-textBox::textBox(std::string txt)  {
+textBox::textBox(std::string txt) {
 
 	testo.setString(txt);
 
@@ -27,8 +27,16 @@ textBox::textBox(std::string txt)  {
 
 }
 
+textBox::textBox() {
+
+}
+
 textBox::~textBox()
 {
+}
+
+std::string textBox::getText() {
+	return testo.getString();
 }
 
 void textBox::updateText(std::string txt) {
@@ -38,6 +46,8 @@ void textBox::updateText(std::string txt) {
 
 void textBox::draw(sf::RenderWindow& window, sf::Vector2f pos) {
 
+	testo.setFont(font);
+
 	sf::Vector2f viewSize = window.getView().getCenter();
 
 	testo.setPosition(viewSize.x - pos.x, viewSize.y - pos.y);
@@ -46,7 +56,7 @@ void textBox::draw(sf::RenderWindow& window, sf::Vector2f pos) {
 
 }
 
-void textBox::draw1(sf::RenderWindow& window) {
+void textBox::draw1(sf::RenderWindow & window) {
 	window.draw(testo);
 }
 

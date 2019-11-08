@@ -1,0 +1,13 @@
+NonGravitar
+PRESS ENTER TO PLAY
+YOU CAN PRESS I FOR THE INSTRUCTIONS
+GAME OVER:
+PRESS ENTER TO PLAY A NEW GAME
+SCORE 
+INSTRUCTIONS:
+right/left arrow : spaceship rotation
+up arrow : spaceship acceleration
+tab : activate fuel's ray
+space : fire bullets
+P : pause the game
+PRESS ENTER TO PLAY
