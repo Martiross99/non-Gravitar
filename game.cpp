@@ -26,7 +26,7 @@ game::game(sf::RenderWindow& gameWindow)
 	close = false;
 	pausa = false;
 
-	nPianeti = rand() % 3 + 5;  
+	nPianeti = rand() % 3 + 5;
 
 	newSolarSystem();
 
@@ -155,12 +155,6 @@ bool game::update(sf::RenderWindow & gameWindow)
 					spaceShip.getBullets().clear();
 				}
 			}
-
-			if (planetsLeft == 0 && alive) {
-				//gameWindow.setView(view);
-				Tcomplimenti.draw(gameWindow, sf::Vector2f(173, 80));
-				gameWindow.display();
-			}
 		}
 
 		//CONTROLLING THE VIEW WHEN YOU ARE INSIDE THE PLANET
@@ -210,7 +204,6 @@ bool game::update(sf::RenderWindow & gameWindow)
 	   }
 	}
 
-
 	return(alive);
 }
 
@@ -226,6 +219,11 @@ void game::render(sf::RenderWindow & gameWindow)
 		for (int i = 0; i < pianetiVect.size(); i++) {
 			pianetiVect[i].draw(gameWindow);
 		}
+
+		if (planetsLeft == 0 && alive) {
+			gameWindow.setView(view);
+			Tcomplimenti.draw(gameWindow, sf::Vector2f(173, 80));
+		}
 	}
 	else pianetiVect[isInside].drawGround(gameWindow);
 
@@ -238,9 +236,9 @@ void game::render(sf::RenderWindow & gameWindow)
 
 void game::newSolarSystem() {
 
-	//nPianeti = rand() % 3 + 5;
+	nPianeti = rand() % 3 + 5;
 
-	nPianeti = 1;
+	//nPianeti = 1;
 
 	for (int i = 0; i < nPianeti; i++) {
 		planet newPlanet(nPianeti, i);
