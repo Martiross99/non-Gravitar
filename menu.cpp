@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <cstdlib>
 
@@ -10,8 +11,9 @@
 #define NSTELLE 1000
 
 menu::menu()
-	: gameWindow({ 1280, 720 }, "nongravitar"), titolo("NonGravitar"), avvio("PRESS ENTER TO PLAY\n\nYOU CAN PRESS P ANYTIME TO PAUSE")
+	: gameWindow({ 1280, 720 }, "NonGravitar")
 {
+	loadTexts();
 
 	for (int i = 0; i < NSTELLE; i++) {
 		int x = -1, y = -1;
@@ -32,9 +34,11 @@ menu::menu()
 		stelleVect[i].setOutlineThickness(1);
 	}
 
+
 	play = false;
 	gameOver = false;
 	closeWindow = false;
+	showInst = false;
 	gameReturn = 0;
 
 	gameWindow.setPosition({ gameWindow.getPosition().x,0 });
@@ -82,8 +86,12 @@ void menu::gestisciEventi() {
 	{
 		switch (event.type) {
 		case sf::Event::KeyPressed:
-			if (event.key.code == sf::Keyboard::Return)
+			if (event.key.code == sf::Keyboard::I)
+				showInst = true;
+			else if (event.key.code == sf::Keyboard::Return) {
 				play = true;
+				showInst = false;
+			}
 
 			break;
 
@@ -101,7 +109,7 @@ void menu::gestisciEventi() {
 
 }
 
-void menu::closeGame(sf::RenderWindow & gameWindow) {
+void menu::closeGame(sf::RenderWindow& gameWindow) {
 
 	gameWindow.close();
 
@@ -111,48 +119,85 @@ void menu::initialize()
 {
 	game game(gameWindow);
 	gameReturn = game.run(gameWindow);
-	if (gameReturn == -1)	//se � un valore positivo vuol dire che il while di game.cpp si
-		//� interrotto perch� l'utente ha chiuso la finestra, in caso contrario � perch� � morto
+	if (gameReturn == -1)	//se il return è -1 vuol dire che il gioco si è interrotto 
+		//perché l'utente ha chiuso la finestra quindi viene chiamata la funzione di chiusura 
+		//della finestra modificando il bool che ne gestisce la chiamata -> il gioco va concluso
 		closeWindow = true;
-	else {    //se il return non � -1 allora vuol dire che il return contiene i punti e il
-  //gioco si � concluso perch� l'utente ha finito le vite
+	else {	//se il return non è -1 allora vuol dire che il return contiene i punti e il
+		//gioco si è concluso perché l'utente ha finito le vite o il fuel
 		gameOver = true;
 	}
 
-	play = false; //in ogni caso il gioco � finito
+	play = false; //in ogni caso il gioco è finito
 }
 
 
 void menu::display() {
 
-	if (!play && !gameOver && !closeWindow) { //non sta giocando e non ha perso: viene mostrato il men� principale
+	if (!play && showInst && !gameOver && !closeWindow) {
 
-		gameWindow.setView(gameView);
+		gameWindow.clear();
 
+		//gameWindow.setView(gameView);
 
 		for (int i = 0; i < stelleVect.size(); i++) {
 			gameWindow.draw(stelleVect[i]);
 		}
-		titolo.setTitle();
-		titolo.draw(gameWindow, sf::Vector2f(173, 80));
-		avvio.draw(gameWindow, sf::Vector2f(170, 10));
+
+		for (int i = 6; i < 13; i++) {
+			allTB[i].setSize(35);
+			allTB[i].draw(gameWindow, sf::Vector2f(250, 400 - (i * 40)));
+		}
 
 		gameWindow.display();
-
 	}
-	else if (!play && gameOver) {   //non sta giocando perch� ha perso: viene mostrato "game over" e il
-  //punteggio ottenuto nella partita -> d� la possibilit� di iniziare una nuova partita
+	else if (!play && !showInst && !gameOver && !closeWindow) { //non sta giocando e non ha perso: viene mostrato il menù principale
 
 		gameWindow.setView(gameView);
 
-		GameOver.setTitle();
-		GameOver.draw(gameWindow, sf::Vector2f(380, 250));
-		newGame.draw(gameWindow, sf::Vector2f(430, 100));
-		Points.updateText(std::string("SCORE " + std::to_string(gameReturn)));
-		Points.draw(gameWindow, sf::Vector2f(270, 170));
+		for (int i = 0; i < stelleVect.size(); i++) {
+			gameWindow.draw(stelleVect[i]);
+		}
+
+		allTB[0].setTitle();
+		allTB[0].draw(gameWindow, sf::Vector2f(173, 80));
+		allTB[1].draw(gameWindow, sf::Vector2f(170, 20));
+		allTB[2].draw(gameWindow, sf::Vector2f(170, 0));
+
+		gameWindow.display();
+
+	}
+	else if (!play && gameOver) { //non sta giocando perché ha perso: viene mostrato "game over" e il
+		//punteggio ottenuto nella partita -> dà la possibilità di iniziare una nuova partita
+
+		gameWindow.setView(gameView);
+
+		allTB[3].setTitle();
+
+		allTB[5].updateText(std::string("SCORE " + std::to_string(gameReturn)));
+
+		allTB[3].draw(gameWindow, sf::Vector2f(380, 250));
+		allTB[4].draw(gameWindow, sf::Vector2f(430, 100));
+		allTB[5].draw(gameWindow, sf::Vector2f(270, 170));
 
 		gameWindow.display();
 
 	}
 
+}
+
+void menu::loadTexts() {
+
+	ifstream testo;
+	string x;
+	int i = 0;
+
+	testo.open("texts.txt", ios::in);
+
+	while (getline(testo, x)) {
+		allTB[i] = textBox(x);
+		i++;
+	}
+
+	testo.close();
 }
