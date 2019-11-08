@@ -12,13 +12,13 @@
 #include "object.h"
 
 
-class navicella : public object
+class spaceship : public object
 {
 
 public:
 
-	navicella();            //constructor - design spaceShip
-	~navicella();
+	spaceship();            //constructor - design spaceShip
+	~spaceship();
 
 	bool move(sf::View view);     //moving spaceShip
 
@@ -36,8 +36,8 @@ public:
 	void decreaseLives();          //decrementa le vite della navicella
 	void decreaseLifePoints();     //decrementa la barra della vita 
 
-	bool decreaseFuel();            //diminuisce la quantità di carburante in relazione al tempo trascorso
-	void increaseFuel(float x);    //aumenta il carburante di un valore x uguale alla quantità contenuta nel serbatoio raccolto
+	bool decreaseFuel();            //diminuisce la quantitï¿½ di carburante in relazione al tempo trascorso
+	void increaseFuel(float x);    //aumenta il carburante di un valore x uguale alla quantitï¿½ contenuta nel serbatoio raccolto
 
 
 	void setPosition(sf::Vector2f newPos);           //change spaceShip position
@@ -48,7 +48,7 @@ public:
 
 	void draw(sf::RenderWindow& window);    
 
-	bool isActive();   //ritorna true se è attivo il raggio traente
+	bool isActive();   //ritorna true se ï¿½ attivo il raggio traente
 
 	void disactivate();     //disattiva il raggio traente
 

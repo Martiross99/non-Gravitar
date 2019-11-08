@@ -131,10 +131,10 @@
     <ClCompile Include="lifeScore.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
-    <ClCompile Include="navicella.cpp" />
+    <ClCompile Include="spaceship.cpp" />
     <ClCompile Include="planet.cpp" />
     <ClCompile Include="tank.cpp" />
-    <ClCompile Include="terreno.cpp" />
+    <ClCompile Include="terrain.cpp" />
     <ClCompile Include="textBox.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -145,11 +145,11 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="lifeScore.h" />
     <ClInclude Include="menu.h" />
-    <ClInclude Include="navicella.h" />
+    <ClInclude Include="spaceship.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="planet.h" />
     <ClInclude Include="tank.h" />
-    <ClInclude Include="terreno.h" />
+    <ClInclude Include="terrain.h" />
     <ClInclude Include="textBox.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

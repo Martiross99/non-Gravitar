@@ -6,12 +6,12 @@
 #include <ctime>
 #include <math.h>
 
-#include "navicella.h"
+#include "spaceship.h"
 #include "game.h"
 
 #define PI 3.14159265
 
-navicella::navicella() : carburante() {      //design spaceShip
+spaceship::spaceship() : carburante() {      //design spaceShip
 
 	Navicella.setPointCount(44);
 
@@ -90,11 +90,11 @@ navicella::navicella() : carburante() {      //design spaceShip
 	line2.setRotation(-10);
 }
 
-navicella::~navicella()
+spaceship::~spaceship()
 {
 }
 
-void navicella::handleEvents(sf::Keyboard::Key key, bool isPressed) {
+void spaceship::handleEvents(sf::Keyboard::Key key, bool isPressed) {
 
     if (key == sf::Keyboard::Up || key == sf::Keyboard::Down)
 		IsMoving = isPressed;
@@ -109,7 +109,7 @@ void navicella::handleEvents(sf::Keyboard::Key key, bool isPressed) {
 
 }
 
-bool navicella::move(sf::View view) {
+bool spaceship::move(sf::View view) {
 
 	sf::Vector2f dir (0.f, 0.f);
 
@@ -133,7 +133,7 @@ bool navicella::move(sf::View view) {
 	return(IsMoving);
 }
 
-void navicella::update(sf::Time time) {
+void spaceship::update(sf::Time time) {
 
 	direction = sf::Vector2f(cos(Navicella.getRotation()*PI / 180), sin(Navicella.getRotation()*PI / 180));
 	firePoint =  sf::Vector2f(Navicella.getPosition().x + 28*direction.x, Navicella.getPosition().y + 28*direction.y);
@@ -164,20 +164,20 @@ void navicella::update(sf::Time time) {
 //	return Navicella.getPosition().y;   //ritorna il valore y del centro della navicella
 //}
 
-sf::FloatRect navicella::getBounds() {
+sf::FloatRect spaceship::getBounds() {
 	return(Navicella.getGlobalBounds());
 }
 
-int navicella::getLives() {
+int spaceship::getLives() {
 	return puntiVita.getLives();
 }
 
-void navicella::decreaseLives() {
+void spaceship::decreaseLives() {
 	puntiVita.decreaseLives();
 }
 
 
-void navicella::decreaseLifePoints() {
+void spaceship::decreaseLifePoints() {
 	if (puntiVita.getSize() > 0) {
 		this->puntiVita.setSize(-1);
 	}
@@ -187,27 +187,27 @@ void navicella::decreaseLifePoints() {
 	}
 }
 
-bool navicella::decreaseFuel() {
+bool spaceship::decreaseFuel() {
 	return(carburante.decrease()); //ritorna false se il carburante � finito
 }
 
-void navicella::increaseFuel(float x) {
+void spaceship::increaseFuel(float x) {
 	carburante.increase(x);
 }
 
-void navicella::setPosition(sf::Vector2f newPos) {
+void spaceship::setPosition(sf::Vector2f newPos) {
 	Navicella.setPosition(newPos);
 }
 
-sf::Vector2f navicella::getPosition() {
+sf::Vector2f spaceship::getPosition() {
 	return(Navicella.getPosition());
 }
 
-int navicella::getRotation() {
+int spaceship::getRotation() {
 	return(Navicella.getRotation());
 }
 
-void navicella::draw(sf::RenderWindow & window) {
+void spaceship::draw(sf::RenderWindow & window) {
 
 	window.draw(Navicella);
 	
@@ -228,29 +228,29 @@ void navicella::draw(sf::RenderWindow & window) {
 }
 
 
-bool navicella::isActive() {   
+bool spaceship::isActive() {   
 	return(raggioT);
 }
 
-void navicella::disactivate() {
+void spaceship::disactivate() {
 	raggioT = false;
 }
 
-void navicella::setRaggio(float y1, float y2) {
+void spaceship::setRaggio(float y1, float y2) {
 	line1.setSize(sf::Vector2f(2, y1));
 	line2.setSize(sf::Vector2f(2, y2));
 }
 
-sf::Vector2f navicella::getFirePoint() {      
+sf::Vector2f spaceship::getFirePoint() {      
 	return(firePoint);
 }
 
 
-std::vector<bullet> navicella::getBullets() {
+std::vector<bullet> spaceship::getBullets() {
 	return(bulletVect);
 }
 
-void navicella::eraseBullet() {
+void spaceship::eraseBullet() {
 	if (!bulletVect.empty())
 		bulletVect.erase(bulletVect.begin());
 }

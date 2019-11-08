@@ -3,7 +3,7 @@
 #include <SFML/Window.hpp>
 #include "../../../../../../SFML-2.5.1/include/SFML/Graphics/PrimitiveType.hpp"
 
-#include "navicella.h"
+#include "spaceship.h"
 #include "bunker.h"
 
 #include "tank.h"
@@ -11,11 +11,11 @@
 #include "object.h"
 
 
-class terreno {
+class terrain {
 
 public:
-	terreno(int nPianeta);
-	~terreno();
+	terrain(int nPianeta);
+	~terrain();
 
 	void initTerrain(int size, int nPianeta);
 

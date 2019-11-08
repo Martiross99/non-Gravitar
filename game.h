@@ -27,7 +27,7 @@ private:
 private:
 	sf::View view;
 
-	navicella spaceShip;
+	spaceship spaceShip;
 
 	int points;
 	textBox score;
@@ -37,7 +37,7 @@ private:
 
 	std::vector<sf::CircleShape> stelleVect;
 
-	int isInside;    //variabile che indica in quale pianeta si trova la navicella, all'inizio è fuori da tutti i pianeti (inizializzata a -1)
+	int isInside;    //variabile che indica in quale pianeta si trova la navicella, all'inizio ï¿½ fuori da tutti i pianeti (inizializzata a -1)
 
 
 	sf::Clock clock;

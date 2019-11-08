@@ -5,7 +5,7 @@
 #include <vector>
 #include <ctime>
 
-#include "terreno.h"
+#include "terrain.h"
 #include "textBox.h"
 
 
@@ -28,17 +28,17 @@ public:
 
 	void recharge();  //ricarica i proiettili dei bunker
 
-	void update(navicella& spaceShip, int& x);   //aggiorna i bunker e i tank del pianeta e controlla tutto quanto avviene all'interno del pianeta
+	void update(spaceship& spaceShip, int& x);   //aggiorna i bunker e i tank del pianeta e controlla tutto quanto avviene all'interno del pianeta
 
 	bool checkBunker();
 
-	void drawGround(sf::RenderWindow& window);   //disegna il terreno una volta che si è entrati in un pianeta
+	void drawGround(sf::RenderWindow& window);   //disegna il terreno una volta che si ï¿½ entrati in un pianeta
 
 
 
 private:
 	sf::CircleShape  pianeta;
-	terreno ground;
+	terrain ground;
 	int raggio;
 	std::vector<bunker*> bunkerVect;
 	

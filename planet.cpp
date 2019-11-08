@@ -73,7 +73,7 @@ void planet::recharge() {
 	}
 }
 
-void planet::update(navicella& spaceShip, int& points) {
+void planet::update(spaceship& spaceShip, int& points) {
 
 	ground.update();
 

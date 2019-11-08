@@ -1,20 +1,20 @@
 #include <stdio.h>
 #include <random>
 #include <cmath>
-#include "terreno.h"
+#include "terrain.h"
 
 #define PI 3.14159265
 
-terreno::terreno(int nPianeta) : size(50), pianeta1("PLANET " + std::to_string(nPianeta)),
+terrain::terrain(int nPianeta) : size(50), pianeta1("PLANET " + std::to_string(nPianeta)),
 pianeta2("PLANET " + std::to_string(nPianeta)) {
 
 }
 
-terreno::~terreno()
+terrain::~terrain()
 {
 }
 
-void terreno::initTerrain(int size, int nPianeta) {
+void terrain::initTerrain(int size, int nPianeta) {
 	this->size = size;
 	ground.setPrimitiveType(sf::PrimitiveType::LineStrip);
 	ground.resize(size);
@@ -34,24 +34,24 @@ void terreno::initTerrain(int size, int nPianeta) {
 	this->setFlag();
 }
 
-void terreno::draw(sf::RenderWindow & window) {
+void terrain::draw(sf::RenderWindow & window) {
 
 	window.draw(ground);
 
 	//disegna i riquadri che contraddistinguono il pianeta
-	for (int i = 0; i < convexShape.size(); i++) {   
+	for (int i = 0; i < convexShape.size(); i++) {
 		window.draw(convexShape[i]);
 	}
 
 	for (int i = rectVect.size() - 1; i >= 0; i--) {
 		window.draw(rectVect[i]);
 	}
-	
+
 	pianeta1.draw1(window); pianeta2.draw1(window);
 	//
 }
 
-void terreno::setBunker(std::vector<bunker*> & bunkerVect) {
+void terrain::setBunker(std::vector<bunker*> & bunkerVect) {
 
 	int j = 3;
 	for (int i = 0; i < bunkerVect.size(); i++) {
@@ -79,7 +79,7 @@ void terreno::setBunker(std::vector<bunker*> & bunkerVect) {
 }
 
 
-void terreno::setTank(std::vector<tank> & tankVect) {
+void terrain::setTank(std::vector<tank> & tankVect) {
 
 	int j = 3;
 	for (int i = 0; i < tankVect.size(); i++) {
@@ -107,7 +107,7 @@ void terreno::setTank(std::vector<tank> & tankVect) {
 }
 
 
-float terreno::collision(sf::Vector2f pos) {
+float terrain::collision(sf::Vector2f pos) {
 
 	float posX = pos.x;
 	float posY = pos.y;
@@ -140,11 +140,11 @@ float terreno::collision(sf::Vector2f pos) {
 }
 
 
-int terreno::getSize() {
+int terrain::getSize() {
 	return size;
 }
 
-void terreno::setFlag() {
+void terrain::setFlag() {
 	double y1 = ground[6].position.y; double y2 = ground[7].position.y;
 	double tan = (-(y2 - y1) / 128);
 
@@ -190,6 +190,6 @@ void terreno::setFlag() {
 
 }
 
-void terreno::update() {
+void terrain::update() {
 	pianeta1.setFont(); pianeta2.setFont();
 }
